@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Sharing" xmlns:vm="clr-namespace:Sharing.ViewModels"
+             x:Class="Sharing.Views.AddChargingPointPage" Title="Dodaj Punkt Ładowania">
+    <ContentPage.BindingContext>
+        <vm:AddChargingPointsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Dodaj Punkt Ładowania" FontSize="Title" HorizontalOptions="CenterAndExpand" />
+
+                <Entry Placeholder="Nazwa" Text="{Binding NewChargingPoint.Name}" />
+                <Entry Placeholder="Adres" Text="{Binding NewChargingPoint.Address}" />
+                <Entry Placeholder="Miasto" Text="{Binding NewChargingPoint.City}" />
+                <Entry Placeholder="Kod Pocztowy" Text="{Binding NewChargingPoint.PostalCode}" />
+                <Entry Placeholder="Szerokość Geograficzna" Text="{Binding NewChargingPoint.Latitude}" />
+                <Entry Placeholder="Długość Geograficzna" Text="{Binding NewChargingPoint.Longitude}" />
+                <Entry Placeholder="Rodzaj Ładowarki" Text="{Binding NewChargingPoint.ChargerType}" />
+                <Entry Placeholder="Moc" Text="{Binding NewChargingPoint.Power}" />
+                <Entry Placeholder="Informacje Kontaktowe" Text="{Binding NewChargingPoint.ContactInfo}" />
+                <Entry Placeholder="Koszt" Text="{Binding NewChargingPoint.Cost}" />
+
+                <Button Text="Dodaj Punkt Ładowania" Command="{Binding AddChargingPointCommand}" />
+                <Label Text="{Binding SuccessMessage}" TextColor="Green" />
+                <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

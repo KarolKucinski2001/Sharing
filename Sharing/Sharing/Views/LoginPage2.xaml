@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Sharing.ViewModels"
+             x:Class="Sharing.Views.LoginPage2"
+             Title="Welcome" BackgroundColor="AliceBlue">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel2/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="LOGIN" HorizontalOptions="Center" FontSize="Title" Margin="0, 30, 0, 10 "/>
+            <Entry x:Name="userNameEntry" Text="{Binding UserName }" Placeholder="User Name" Margin=" 10,10">
+                
+            </Entry>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder=" Password" Margin="10,10"></Entry>
+
+            <Label x:Name="LoginMessageLabel" Text="{Binding LoginMessage, Mode=OneWay}" IsVisible="{Binding TurnLoginMessage, Mode=OneWay}" Margin="10,0,0,0"/>
+
+            <ImageButton HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" Margin="0,0,20,0" Command="{Binding cmdSetting}">
+                <ImageButton.Source>
+                    <OnPlatform x:TypeArguments ="FileImageSource"
+                                iOS ="icon_about.png"
+                                Android ="icon_about.png"/>
+
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Button x:Name="loginButton" Text="LOGIN"  TextColor="White" BackgroundColor="Black" Margin="10,10,10,10"
+                    Command="{Binding cmdLogin}"/>
+
+            <Button x:Name="createAccount" Text="CREATE ACCOUNT"  TextColor="White" BackgroundColor="Black" Margin="10,10,10,10"
+                    Command="{Binding cmdCreateAccount}"/>
+
+            <Label Text="Forgot password" TextColor="Blue" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding cmdForgotPassword}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

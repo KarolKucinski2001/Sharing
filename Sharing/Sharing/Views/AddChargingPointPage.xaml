@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Sharing" xmlns:vm="clr-namespace:Sharing.ViewModels"
              x:Class="Sharing.Views.AddChargingPointPage" Title="Dodaj Punkt Ładowania">
     <ContentPage.BindingContext>
-        <vm:AddChargingPointsViewModel/>
+        <vm:AddChargingPointViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
@@ -13,14 +13,15 @@
 
                 <Entry Placeholder="Nazwa" Text="{Binding NewChargingPoint.Name}" />
                 <Entry Placeholder="Adres" Text="{Binding NewChargingPoint.Address}" />
-                <Entry Placeholder="Miasto" Text="{Binding NewChargingPoint.City}" />
+                <!--<Entry Placeholder="Miasto" Text="{Binding NewChargingPoint.City}" />
                 <Entry Placeholder="Kod Pocztowy" Text="{Binding NewChargingPoint.PostalCode}" />
                 <Entry Placeholder="Szerokość Geograficzna" Text="{Binding NewChargingPoint.Latitude}" />
                 <Entry Placeholder="Długość Geograficzna" Text="{Binding NewChargingPoint.Longitude}" />
-                <Entry Placeholder="Rodzaj Ładowarki" Text="{Binding NewChargingPoint.ChargerType}" />
+                <Entry Placeholder="Rodzaj Ładowarki" Text="{Binding NewChargingPoint.ChargerType}" />-->
                 <Entry Placeholder="Moc" Text="{Binding NewChargingPoint.Power}" />
-                <Entry Placeholder="Informacje Kontaktowe" Text="{Binding NewChargingPoint.ContactInfo}" />
-                <Entry Placeholder="Koszt" Text="{Binding NewChargingPoint.Cost}" />
+                <Entry Placeholder="cena za godzine" Text="{Binding NewChargingPoint.PricePerHour}" />
+                <!--<Entry Placeholder="Informacje Kontaktowe" Text="{Binding NewChargingPoint.ContactInfo}" />
+                <Entry Placeholder="Koszt" Text="{Binding NewChargingPoint.Cost}" />-->
 
                 <Button Text="Dodaj Punkt Ładowania" Command="{Binding AddChargingPointCommand}" />
                 <Label Text="{Binding SuccessMessage}" TextColor="Green" />

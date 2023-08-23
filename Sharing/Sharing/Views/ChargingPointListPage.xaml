@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Sharing.Views"
+             xmlns:vm="clr-namespace:Sharing.ViewModels"
+             x:Class="Sharing.Views.ChargingPointListPage">
+    <ContentPage.BindingContext>
+        <vm:ChargingPointListViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding ChargingPoints}" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding ChargingPointId}" FontAttributes="Bold" />
+                            <Label Text="{Binding Address}" />
+                            <Label Text="{Binding Slots, StringFormat='Slots: {0}'}" />
+
+                            <!-- Dodaj Picker do wyboru godziny rezerwacji -->
+                            <Picker Title="Select Reservation Time" SelectedItem="{Binding SelectedReservationTime}">
+                                <Picker.Items>
+                                    <x:String>08:00 AM</x:String>
+                                    <x:String>09:00 AM</x:String>
+                                    <x:String>10:00 AM</x:String>
+                                    <!-- Dodaj inne opcje godzin w formacie, który Ci odpowiada -->
+                                </Picker.Items>
+                            </Picker>
+
+                            <!-- Dodaj pole do wprowadzenia ceny rezerwacji -->
+                            <Entry Placeholder="Reservation Price" Keyboard="Numeric" Text="{Binding ReservationPrice}" />
+
+                            <Button Text="Reserve" Command="{Binding ReserveChargingPointCommand}" CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

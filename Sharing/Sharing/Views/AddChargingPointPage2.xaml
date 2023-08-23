@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Sharing" xmlns:vm="clr-namespace:Sharing.ViewModels"
+             x:Class="Sharing.Views.AddChargingPointPage2" Title="Dodaj Punkt Ładowania">
+    <ContentPage.BindingContext>
+        <vm:AddChargingPointViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry Placeholder="Charging Point ID" Keyboard="Numeric" Text="{Binding ChargingPointId}" />
+                <Entry Placeholder="Address" Text="{Binding Address}" />
+                <Entry Placeholder="Slots" Keyboard="Numeric" Text="{Binding Slots}" />
+                <Button Text="Add Charging Point" Command="{Binding AddChargingPointCommand}" />
+                <ListView ItemsSource="{Binding ChargingPoints}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding ChargingPointId}" Detail="{Binding Address}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

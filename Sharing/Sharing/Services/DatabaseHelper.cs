@@ -6,8 +6,6 @@ using System.Linq;
 
 namespace Sharing.Services
 {
-    
-
     public class DatabaseHelper
     {
         private SQLiteConnection database;
@@ -16,7 +14,11 @@ namespace Sharing.Services
         {
             database = new SQLiteConnection(dbPath);
             database.CreateTable<UserModel>();
+            database.CreateTable<ChargingPointModel>(); // Dodaj tabelę dla ładowarek
+            database.CreateTable<ReservationModel>();
         }
+
+        // Metody związane z użytkownikami
 
         public List<UserModel> GetUsers()
         {
@@ -38,7 +40,29 @@ namespace Sharing.Services
             return database.Table<UserModel>().Any(u => u.UserName == username);
         }
 
-        // Add more methods as needed (e.g., update user, delete user, etc.)
-    }
+        // Metody związane z ładowarkami
 
+        public List<ChargingPointModel> GetChargingPoints()
+        {
+            return database.GetAllWithChildren<ChargingPointModel>();
+        }
+
+        public void InsertChargingPoint(ChargingPointModel chargingPoint)
+        {
+            database.InsertWithChildren(chargingPoint);
+        }
+
+
+        public void InsertReservation(ReservationModel reservation)
+        {
+            database.InsertWithChildren(reservation);
+            
+        } 
+        public void UpdateReservation(ReservationModel reservation)
+        {
+            database.UpdateWithChildren(reservation);
+        }
+
+        // Dodaj więcej metod związanych z ładowarkami, jeśli są potrzebne (np. aktualizuj ładowarkę, usuń ładowarkę itp.)
+    }
 }

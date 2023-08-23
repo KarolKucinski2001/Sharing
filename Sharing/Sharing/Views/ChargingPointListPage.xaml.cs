@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Sharing.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchChargingPointsPage : ContentPage
+    public partial class ChargingPointListPage : ContentPage
     {
-        public SearchChargingPointsPage()
+        public ChargingPointListPage()
         {
             InitializeComponent();
         }

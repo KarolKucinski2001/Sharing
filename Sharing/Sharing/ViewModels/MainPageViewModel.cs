@@ -40,12 +40,13 @@ namespace Sharing.ViewModels
 
         private void goToNavigateToSearchChargingPointsCommand(object obj)
         {
-            App.Current.MainPage.Navigation.PushAsync(new SettingPage());
+            App.Current.MainPage.Navigation.PushAsync(new ChargingPointListPage());
         }
 
         private void goToNavigateToAddChargingPoint(object obj)
         {
-            App.Current.MainPage.Navigation.PushAsync(new AddChargingPointPage());
+            //App.Current.MainPage.Navigation.PushAsync(new AddChargingPointPage());
+            App.Current.MainPage.Navigation.PushAsync(new AddChargingPointPage2());
         }
 
        

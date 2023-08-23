@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Sharing.Views"
-             xmlns:vm="clr-namespace:Sharing.ViewModels"
+             xmlns:vm="clr-namespace:Sharing.ViewModels;assembly=Sharing"
              x:Class="Sharing.Views.ChargingPointListPage">
     <ContentPage.BindingContext>
         <vm:ChargingPointListViewModel />
     </ContentPage.BindingContext>
 
     <StackLayout>
-        <ListView ItemsSource="{Binding ChargingPoints}" HasUnevenRows="true">
+        <ListView ItemsSource="{Binding ChargingPoints}" HasUnevenRows="true" ItemTapped="OnItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -30,8 +30,6 @@
 
                             <!-- Dodaj pole do wprowadzenia ceny rezerwacji -->
                             <Entry Placeholder="Reservation Price" Keyboard="Numeric" Text="{Binding ReservationPrice}" />
-
-                            <Button Text="Reserve" Command="{Binding ReserveChargingPointCommand}" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

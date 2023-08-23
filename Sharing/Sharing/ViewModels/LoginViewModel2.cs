@@ -1,9 +1,8 @@
 ﻿using Sharing.Services;
 using Sharing.Views;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Sharing.ViewModels
@@ -17,7 +16,7 @@ namespace Sharing.ViewModels
         public Command cmdForgotPassword { get; set; }
         public Command cmdSetting { get; set; }
 
-        ILoginService ilog = DependencyService.Get<ILoginService>();    
+        ILoginService ilog = DependencyService.Get<ILoginService>();
 
         public LoginViewModel2()
         {
@@ -27,30 +26,29 @@ namespace Sharing.ViewModels
             cmdSetting = new Command(goToSetting);
         }
 
-        private void goToSetting(object obj)
+        private void goToSetting()
         {
             App.Current.MainPage.Navigation.PushAsync(new SettingPage());
         }
 
-        private void goToCreateAccount(object obj)
+        private void goToCreateAccount()
         {
             App.Current.MainPage.Navigation.PushAsync(new CreateAccountPage2());
         }
 
-        private void goToMainPage(object obj)
+        private void goToMainPage()
         {
-            if(ilog.login(UserName, Password))
+            if (ilog.login(UserName, Password))
             {
                 App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else
             {
-                LoginMessage = "Please enter valid user name and password";
+                LoginMessage = "Please enter a valid username and password";
                 TurnLoginMessage = true;
             }
         }
 
-        ///---------------------------------------
         private string userName;
         public string UserName
         {
@@ -61,6 +59,7 @@ namespace Sharing.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UserName"));
             }
         }
+
         private string password;
         public string Password
         {
@@ -71,6 +70,7 @@ namespace Sharing.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Password"));
             }
         }
+
         private string loginMessage;
         public string LoginMessage
         {

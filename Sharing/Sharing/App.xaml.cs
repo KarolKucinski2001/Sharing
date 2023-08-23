@@ -26,13 +26,16 @@ namespace Sharing
             DependencyService.Register<ILoginService, LoginService>();
             MainPage = new NavigationPage(new LoginPage2());
 
+            // Zarejestruj ViewModelLocator jako zasób globalny
+           // Resources.Add("ViewModelLocator", new ViewModelLocator());
+        
 
 
 
 
-            //  DependencyService.Register<MockDataStore>();
-            // MainPage = new AppShell(); 
-        }
+        //  DependencyService.Register<MockDataStore>();
+        // MainPage = new AppShell(); 
+    }
 
         protected override void OnStart()
         {

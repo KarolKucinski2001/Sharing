@@ -7,8 +7,7 @@ namespace Sharing.Models
 {
     public class UserModel
     {
-        //public string userName { get; set; }    
-        //public string password { get; set; }
+       
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         [Unique]
@@ -19,6 +18,6 @@ namespace Sharing.Models
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
-        // Add more properties as needed
+
     }
 }

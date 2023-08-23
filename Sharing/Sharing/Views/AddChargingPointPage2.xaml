@@ -9,9 +9,9 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Entry Placeholder="Charging Point ID" Keyboard="Numeric" Text="{Binding ChargingPointId}" />
                 <Entry Placeholder="Address" Text="{Binding Address}" />
-                <Entry Placeholder="Slots" Keyboard="Numeric" Text="{Binding Slots}" />
+                <Entry Placeholder="Number of slots" Keyboard="Numeric" Text="{Binding Slots}" />
+                <Entry Placeholder="Price per hour" Keyboard="Numeric" Text="{Binding PricePerHour}" />
                 <Button Text="Add Charging Point" Command="{Binding AddChargingPointCommand}" />
                 <ListView ItemsSource="{Binding ChargingPoints}">
                     <ListView.ItemTemplate>

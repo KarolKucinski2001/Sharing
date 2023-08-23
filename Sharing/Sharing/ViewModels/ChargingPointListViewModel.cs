@@ -1,9 +1,8 @@
 ﻿using Sharing.Models;
-using System;
+using Sharing.ViewModels;
+using Sharing.Views;
+using Sharing;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Sharing.ViewModels
@@ -12,15 +11,9 @@ namespace Sharing.ViewModels
     {
         public ObservableCollection<ChargingPointModel> ChargingPoints { get; set; } = new ObservableCollection<ChargingPointModel>();
 
-        public ChargingPointListViewModel()
-        {
-            LoadChargingPoints();
-            ReserveChargingPointCommand = new Command(ReserveChargingPoint);
-        }
+        // Usuń ICommand ShowMessageCommand, ponieważ teraz będziemy korzystać z ItemTapped
 
         private ChargingPointModel selectedChargingPoint;
-        private DateTime selectedReservationTime;
-        private double reservationPrice;
 
         public ChargingPointModel SelectedChargingPoint
         {
@@ -28,10 +21,9 @@ namespace Sharing.ViewModels
             set { SetProperty(ref selectedChargingPoint, value); }
         }
 
-        public DateTime SelectedReservationTime
+        public ChargingPointListViewModel()
         {
-            get { return selectedReservationTime; }
-            set { SetProperty(ref selectedReservationTime, value); }
+            LoadChargingPoints();
         }
 
         private void LoadChargingPoints()
@@ -47,61 +39,14 @@ namespace Sharing.ViewModels
             }
         }
 
-        public ICommand ReserveChargingPointCommand { get; }
-
-        private async void ReserveChargingPoint()
+        // Obsługa zdarzenia ItemTapped
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (SelectedChargingPoint != null)
+            if (e.Item is ChargingPointModel selectedItem)
             {
-                // Tutaj możesz dodać logikę do sprawdzania dostępności ładowarki, np. czy jest dostępna w wybranym czasie.
-                // Pamiętaj, że ta część logiki zależy od implementacji rezerwacji w Twojej aplikacji.
-
-                // Sprawdź dostępność ładowarki
-                bool isAvailable = await CheckChargingPointAvailability(SelectedChargingPoint, SelectedReservationTime);
-
-                if (isAvailable)
-                {
-                    // Jeśli ładowarka jest dostępna, utwórz nową rezerwację
-                    var reservation = new ReservationModel
-                    {
-                        ChargingPointId = SelectedChargingPoint.ChargingPointId,
-                        ReservationTime = SelectedReservationTime,
-                        //Price = ReservationPrice
-                        // Dodaj inne właściwości rezerwacji, jeśli są potrzebne
-                    };
-
-                    // Dodaj rezerwację do bazy danych
-                    App.Database.InsertReservation(reservation);
-
-                    // Dodaj rezerwację do ładowarki
-                    SelectedChargingPoint.Reservations.Add(reservation);
-
-                    // Aktualizuj ładowarkę w bazie danych
-                    App.Database.UpdateReservation(reservation);
-
-                    // Aktualizuj widok
-                    LoadChargingPoints();
-                }
-                else
-                {
-                    // Ładowarka jest niedostępna w wybranym czasie
-                    await Application.Current.MainPage.DisplayAlert("Błąd", "Ładowarka jest niedostępna w wybranym czasie.", "OK");
-                }
+                // Tutaj możesz wykonać działania na wybranym elemencie ChargingPointModel,
+                // np. nawigować do innej strony lub wykonać inne operacje.
             }
-        }
-
-        private async Task<bool> CheckChargingPointAvailability(ChargingPointModel chargingPoint, DateTime reservationTime)
-        {
-            // Tutaj możesz zaimplementować logikę sprawdzania dostępności ładowarki,
-            // na przykład sprawdzić, czy nie ma już innej rezerwacji w danym czasie.
-            // Zwróć true, jeśli ładowarka jest dostępna, lub false, jeśli jest zajęta w danym czasie.
-
-            // Przykładowa implementacja:
-            // Załóżmy, że ładowarka jest dostępna, jeśli nie ma żadnych innych rezerwacji w danym czasie.
-            var reservations = chargingPoint.Reservations;
-            bool isAvailable = !reservations.Any(r => r.ReservationTime == reservationTime);
-
-            return isAvailable;
         }
     }
 }

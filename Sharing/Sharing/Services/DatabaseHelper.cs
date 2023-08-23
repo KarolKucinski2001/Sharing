@@ -14,11 +14,10 @@ namespace Sharing.Services
         {
             database = new SQLiteConnection(dbPath);
             database.CreateTable<UserModel>();
-            database.CreateTable<ChargingPointModel>(); // Dodaj tabelę dla ładowarek
+            database.CreateTable<ChargingPointModel>(); 
             database.CreateTable<ReservationModel>();
         }
 
-        // Metody związane z użytkownikami
 
         public List<UserModel> GetUsers()
         {
@@ -61,6 +60,11 @@ namespace Sharing.Services
         public void UpdateReservation(ReservationModel reservation)
         {
             database.UpdateWithChildren(reservation);
+        }
+
+        public void DeleteAllChargingPoints()
+        {
+            database.DeleteAll<ChargingPointModel>();
         }
 
         // Dodaj więcej metod związanych z ładowarkami, jeśli są potrzebne (np. aktualizuj ładowarkę, usuń ładowarkę itp.)

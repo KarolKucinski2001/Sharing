@@ -1,44 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Sharing.Models;
+using Sharing.ViewModels;
+using System.Windows.Input;
+using System;
+using Xamarin.Forms;
 
 namespace Sharing.ViewModels
 {
-    using System;
-    using System.Windows.Input;
-    using Xamarin.Forms;
-
-    namespace Sharing.ViewModels
+    public class ReservationViewModel : BaseViewModel
     {
-        public class ReservationViewModel : BaseViewModel
+        private ChargingPointModel chargingPoint;
+
+        public DateTime SelectedReservationTime { get; set; }
+        public double ReservationPrice { get; set; }
+        public ICommand ReserveCommand { get; }
+
+        public ReservationViewModel()
         {
-            private DateTime selectedReservationTime;
-            private double reservationPrice;
+            // Domyślny konstruktor bez parametrów
+            ReserveCommand = new Command(Reserve);
+        }
 
-            public DateTime SelectedReservationTime
-            {
-                get { return selectedReservationTime; }
-                set { SetProperty(ref selectedReservationTime, value); }
-            }
+        public ReservationViewModel(ChargingPointModel chargingPoint)
+        {
+            this.chargingPoint = chargingPoint;
+            ReserveCommand = new Command(Reserve);
+        }
 
-            public double ReservationPrice
-            {
-                get { return reservationPrice; }
-                set { SetProperty(ref reservationPrice, value); }
-            }
+        public void Reserve()
+        {
+            // Tutaj możesz dodać logikę rezerwacji ładowarki, używając chargingPoint, SelectedReservationTime i ReservationPrice
+            // ...
 
-            public ICommand ReserveCommand { get; }
-
-            public ReservationViewModel()
-            {
-                ReserveCommand = new Command(Reserve);
-            }
-
-            private void Reserve()
-            {
-                // Tutaj umieść logikę rezerwacji ładowarki, używając SelectedReservationTime i ReservationPrice
-            }
+            // Po zakończeniu rezerwacji możesz wrócić do listy ładowarek
+            Application.Current.MainPage.Navigation.PopAsync();
         }
     }
-
 }

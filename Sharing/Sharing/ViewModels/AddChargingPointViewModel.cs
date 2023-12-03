@@ -74,12 +74,11 @@ namespace Sharing.ViewModels
 
         public AddChargingPointViewModel()
         {
-            AddChargingPointCommand = new Command(OnAddChargingPointClicked);
+            AddChargingPointCommand = new Command(OnAddChargingPointCommand);
         }
 
-        private void OnAddChargingPointClicked()
+        private void OnAddChargingPointCommand()
         {
-            // Tworzenie nowej ładowarki na podstawie wprowadzonych danych
             var newChargingPoint = new ChargingPointModel
             {
                 ChargingPointId = ChargingPointId,
@@ -89,18 +88,13 @@ namespace Sharing.ViewModels
                
             };
 
-            // Dodaj nową ładowarkę do bazy danych lub innej usługi zarządzającej danymi ładowarki
             App.Database.InsertChargingPoint(newChargingPoint);
-           
-
-            // Wyczyść pola po dodaniu
+            //App.Database.DeleteAllChargingPoints();
             ChargingPointId = 0;
             Address = string.Empty;
-            Slots = 0;
+            Slots = 1;
             PricePerHour = 25;
 
-            // Wyślij wiadomość lub zaktualizuj widok, aby potwierdzić dodanie ładowarki
-            //MessagingCenter.Send(this, "ChargingPointAdded");
         }
     }
 }

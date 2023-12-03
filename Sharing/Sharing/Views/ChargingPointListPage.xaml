@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Sharing.Views"
              xmlns:vm="clr-namespace:Sharing.ViewModels;assembly=Sharing"
@@ -14,12 +13,19 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <Label Text="{Binding ChargingPointId}" FontAttributes="Bold" />
+                         
+
+                            <!-- Opis Address -->
+                            <Label Text="Adres:" FontAttributes="Bold" />
                             <Label Text="{Binding Address}" />
+
+                            <!-- Opis Slots -->
+                            <Label Text="Liczba slotów:" FontAttributes="Bold" />
                             <Label Text="{Binding Slots, StringFormat='Slots: {0}'}" />
 
                             <!-- Dodaj Picker do wyboru godziny rezerwacji -->
-                            <Picker Title="Select Reservation Time" SelectedItem="{Binding SelectedReservationTime}">
+                            <Label Text="Zarezerwuj:" FontAttributes="Bold" />
+                            <Picker SelectedItem="{Binding SelectedReservationTime}">
                                 <Picker.Items>
                                     <x:String>08:00 AM</x:String>
                                     <x:String>09:00 AM</x:String>
@@ -28,8 +34,10 @@
                                 </Picker.Items>
                             </Picker>
 
+                            <!-- Opis ReservationPrice -->
+                            <Label Text="Cena:" FontAttributes="Bold" />
                             <!-- Dodaj pole do wprowadzenia ceny rezerwacji -->
-                            <Entry Placeholder="Reservation Price" Keyboard="Numeric" Text="{Binding ReservationPrice}" />
+                            <Entry Placeholder="Cena" Keyboard="Numeric" Text="{Binding ReservationPrice}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

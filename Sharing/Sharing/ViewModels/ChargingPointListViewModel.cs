@@ -11,8 +11,6 @@ namespace Sharing.ViewModels
     {
         public ObservableCollection<ChargingPointModel> ChargingPoints { get; set; } = new ObservableCollection<ChargingPointModel>();
 
-        // Usuń ICommand ShowMessageCommand, ponieważ teraz będziemy korzystać z ItemTapped
-
         private ChargingPointModel selectedChargingPoint;
 
         public ChargingPointModel SelectedChargingPoint

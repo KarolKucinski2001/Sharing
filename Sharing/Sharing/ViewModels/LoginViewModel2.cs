@@ -22,18 +22,8 @@ namespace Sharing.ViewModels
         {
             cmdLogin = new Command(goToMainPage);
             cmdCreateAccount = new Command(goToCreateAccount);
-            cmdForgotPassword = new Command(goToSetting);
+            cmdForgotPassword = new Command(goToForgotPassword);
             cmdSetting = new Command(goToSetting);
-        }
-
-        private void goToSetting()
-        {
-            App.Current.MainPage.Navigation.PushAsync(new SettingPage());
-        }
-
-        private void goToCreateAccount()
-        {
-            App.Current.MainPage.Navigation.PushAsync(new CreateAccountPage2());
         }
 
         private void goToMainPage()
@@ -49,6 +39,21 @@ namespace Sharing.ViewModels
             }
         }
 
+        private void goToSetting()
+        {
+            App.Current.MainPage.Navigation.PushAsync(new SettingPage());
+        }
+
+        private void goToCreateAccount()
+        {
+            App.Current.MainPage.Navigation.PushAsync(new CreateAccountPage2());
+        }
+        private void goToForgotPassword()
+        {
+            App.Current.MainPage.Navigation.PushAsync(new CreateAccountPage2());
+        }
+
+       
         private string userName;
         public string UserName
         {

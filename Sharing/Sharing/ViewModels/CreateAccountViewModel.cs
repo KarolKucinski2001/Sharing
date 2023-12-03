@@ -79,35 +79,26 @@ namespace Sharing.ViewModels
         public CreateAccountViewModel2()
         {
             loginService = DependencyService.Get<ILoginService>();
-            CreateAccountCommand = new Command(OnCreateAccountClicked);
+            CreateAccountCommand = new Command(OnCreateAccountCommand);
         }
 
-        private void OnCreateAccountClicked()
+        private void OnCreateAccountCommand()
         {
-            // Check if the user already exists
             if (App.Database.DoesUserExist(Username))
             {
                 ErrorMessage = "Username already exists";
                 return;
             }
 
-            // Perform any necessary validation on the entered data
-
-            // Create a new UserModel instance with the entered data
             var newUser = new UserModel
             {
                 UserName = Username,
                 Password = Password,
                 Email = Email
-                // Set other properties as needed
             };
 
-            // Call a method to save the user data to the database or perform any other necessary actions
             App.Database.InsertUser(newUser);
-
-            // Display a success message or navigate to a different page
             ErrorMessage = "Succesfuly created";
-            // Account created successfully
         }
     }
 }

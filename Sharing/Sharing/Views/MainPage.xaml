@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Sharing.ViewModels" 
              x:DataType="viewmodels:MainPageViewModel"
-             x:Class="Sharing.Views.MainPage" Title="Main Page">
+             x:Class="Sharing.Views.MainPage" Title="Strona główna">
     <ContentPage.Content>
         <!--<Grid>
             <Button x:Name="yourView" Text="Show Map" Clicked="YourView_Clicked" />
         </Grid>-->
         <StackLayout>
-            <Label Text="Witaj [Imię Użytkownika]!" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label Text="Witaj Karol!" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             <Button Text="Dodaj Ładowarkę" Command="{Binding NavigateToAddChargingPointCommand}" />
             <Button Text="Szukaj Ładowarek" Command="{Binding NavigateToSearchChargingPointsCommand}" />
             <Button Text="Twoje Ładowarki" Command="{Binding NavigateToYourChargingPointsCommand}" />
